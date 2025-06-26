@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tournoi PUBG Erangel - 25,000 FDJ à gagner!</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
+            color: #ffffff;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            padding: 40px 0;
+            background: linear-gradient(45deg, #ff6b35, #f7931e);
+            margin-bottom: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(255, 107, 53, 0.3);
+        }
+
+        .header h1 {
+            font-size: 3rem;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            margin-bottom: 10px;
+        }
+
+        .header .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .prize-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+        }
+
+        .prize-amount {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #ffd700;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .tournament-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .info-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 25px;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        .info-card h3 {
+            color: #ff6b35;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+
+        .registration-form {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 40px;
+            border-radius: 15px;
+            margin-bottom: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #ff6b35;
+        }
+
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            background: rgba(255, 255, 255, 0.9);
+            color: #333;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 15px;
+        }
+
+        .payment-methods {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .payment-method {
+            flex: 1;
+            padding: 15px;
+            border: 2px solid transparent;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            cursor: pointer;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .payment-method:hover, .payment-method.selected {
+            border-color: #ff6b35;
+            background: rgba(255, 107, 53, 0.2);
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(45deg, #ff6b35, #f7931e);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(255, 107, 53, 0.4);
+        }
+
+        .submit-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .participants-list {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 30px;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .participant-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .countdown {
+            text-align: center;
+            font-size: 2rem;
+            font-weight: bold;
+            color: #ffd700;
+            margin: 30px 0;
+            padding: 20px;
+            background: rgba(255, 215, 0, 0.1);
+            border-radius: 10px;
+        }
+
+        .rules {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .rules h3 {
+            color: #ff6b35;
+            margin-bottom: 20px;
+        }
+
+        .rules ul {
+            list-style-position: inside;
+            line-height: 1.8;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.8);
+        }
+
+        .modal-content {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            margin: 15% auto;
+            padding: 30px;
+            border-radius: 15px;
+            width: 80%;
+            max-width: 500px;
+            text-align: center;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+            
+            .payment-methods {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎮 TOURNOI PUBG ERANGEL 🏆</h1>
+            <p class="subtitle">Le plus grand tournoi de PUBG - Une seule chance de briller!</p>
+        </div>
+
+        <div class="prize-section">
+            <h2>PRIX À GAGNER</h2>
+            <div class="prize-amount">25,000 FDJ</div>
+            <p>Pour un seul et unique gagnant!</p>
+        </div>
+
+        <div class="countdown" id="countdown">
+            Temps restant: Chargement...
+        </div>
+
+        <div class="tournament-info">
+            <div class="info-card">
+                <h3>📅 Date du Tournoi</h3>
+                <p><strong>12 Juillet 2025</strong></p>
+                <p>Match unique - Soyez prêts!</p>
+            </div>
+            
+            <div class="info-card">
+                <h3>🗺️ Carte</h3>
+                <p><strong>Erangel</strong></p>
+                <p>La carte classique pour les vrais champions</p>
+            </div>
+            
+            <div class="info-card">
+                <h3>💰 Frais d'inscription</h3>
+                <p><strong>1,000 FDJ</strong></p>
+                <p>Pour soutenir l'organisation du concours</p>
+                <small style="opacity: 0.8;">*Contribution pour l'effort de création et organisation</small>
+            </div>
+            
+            <div class="info-card">
+                <h3>🏆 Format</h3>
+                <p><strong>Room privée</strong></p>
+                <p>Un seul match, un seul gagnant</p>
+            </div>
+        </div>
+
+        <div class="rules">
+            <h3>📋 Règles du Tournoi</h3>
+            <div style="background: rgba(255, 215, 0, 0.2); padding: 15px; border-radius: 8px; margin-bottom: 20px; border-left: 4px solid #ffd700;">
+                <h4 style="color: #ffd700; margin-bottom: 10px;">💡 À PROPOS DES FRAIS D'INSCRIPTION</h4>
+                <p style="line-height: 1.6;">Les 1,000 FDJ ne sont pas un paiement pour jouer, mais une <strong>contribution pour soutenir l'effort de création et d'organisation</strong> de ce tournoi. Cela permet de couvrir les coûts de mise en place, de coordination et de gestion de l'événement.</p>
+            </div>
+            <ul>
+                <li>Contribution de 1,000 FDJ pour soutenir l'organisation du tournoi</li>
+                <li>Un seul match sur la carte Erangel</li>
+                <li>Room privée - les détails seront envoyés par WhatsApp</li>
+                <li>Le gagnant (Chicken Dinner) remporte 25,000 FDJ</li>
+                <li>Paiement immédiat après la victoire</li>
+                <li>Aucun remboursement après inscription</li>
+                <li>Respect des règles fair-play obligatoire</li>
+            </ul>
+        </div>
+
+        <div class="registration-form">
+            <h3>🎯 INSCRIPTION AU TOURNOI</h3>
+            <div class="payment-info" style="background: rgba(255, 107, 53, 0.2); padding: 20px; border-radius: 10px; margin-bottom: 30px; border: 2px solid #ff6b35;">
+                <h4 style="color: #ffd700; margin-bottom: 15px;">💳 CONTRIBUTION POUR L'ORGANISATION</h4>
+                <div style="background: rgba(255, 215, 0, 0.15); padding: 12px; border-radius: 6px; margin-bottom: 15px;">
+                    <p style="font-size: 0.95rem; line-height: 1.5;"><strong>Important :</strong> Les 1,000 FDJ sont une contribution pour soutenir l'effort de création et d'organisation de ce tournoi, pas un paiement pour jouer.</p>
+                </div>
+                <p style="font-size: 1.1rem; font-weight: bold;">Numéro de transfert : <span style="color: #ffd700; font-size: 1.3rem;">77 44 54 01</span></p>
+                <p style="margin: 10px 0;">Montant de contribution : <strong>1,000 FDJ</strong></p>
+                <p style="color: #ff6b35; font-weight: bold;">⚠️ IMPORTANT : Envoyez la capture d'écran du transfert sur WhatsApp après inscription</p>
+            </div>
+            <form id="registrationForm">
+                <div class="form-group">
+                    <label for="playerName">Nom du joueur PUBG *</label>
+                    <input type="text" id="playerName" name="playerName" required placeholder="Votre nom de joueur PUBG">
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="country">Pays *</label>
+                        <select id="country" name="country" required>
+                            <option value="">Sélectionnez votre pays</option>
+                            <option value="dj">🇩🇯 Djibouti</option>
+                            <option value="so">🇸🇴 Somalie</option>
+                            <option value="et">🇪🇹 Éthiopie</option>
+                            <option value="er">🇪🇷 Érythrée</option>
+                            <option value="sa">🇸🇦 Arabie Saoudite</option>
+                            <option value="ye">🇾🇪 Yémen</option>
+                            <option value="fr">🇫🇷 France</option>
+                            <option value="other">🌍 Autre</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="phone">Numéro WhatsApp *</label>
+                        <input type="tel" id="phone" name="phone" required placeholder="77 XX XX XX">
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="playerID">ID PUBG *</label>
+                    <input type="text" id="playerID" name="playerID" required placeholder="Votre ID numérique PUBG">
+                </div>
+                
+                <div class="form-group">
+                    <label>Méthode de paiement *</label>
+                    <div class="payment-methods">
+                        <div class="payment-method" data-method="dmoney">
+                            <h4>D-Money</h4>
+                            <p>Paiement sécurisé</p>
+                        </div>
+                        <div class="payment-method" data-method="waafi">
+                            <h4>Waafi</h4>
+                            <p>Paiement rapide</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="transferScreenshot">Capture d'écran du transfert *</label>
+                    <input type="file" id="transferScreenshot" name="transferScreenshot" accept="image/*" required style="background: rgba(255, 255, 255, 0.9); color: #333; padding: 12px; border-radius: 8px;">
+                    <small style="color: #ffd700; display: block; margin-top: 5px;">
+                        📱 Joindre la capture d'écran de votre transfert de 1,000 FDJ vers 77 44 54 01
+                    </small>
+                </div>
+                
+                <div style="background: rgba(255, 0, 0, 0.2); padding: 15px; border-radius: 8px; margin: 20px 0; border: 1px solid #ff4444;">
+                    <h4 style="color: #ff4444; margin-bottom: 10px;">⚠️ CONFIRMATION OBLIGATOIRE</h4>
+                    <label style="display: flex; align-items: center; cursor: pointer;">
+                        <input type="checkbox" id="confirmTransfer" required style="margin-right: 10px; transform: scale(1.2);">
+                        <span>J'ai effectué ma contribution de 1,000 FDJ vers le numéro <strong>77 44 54 01</strong> pour soutenir l'organisation du tournoi et j'ai joint la capture d'écran</span>
+                    </label>
+                </div>
+                
+                <button type="submit" class="submit-btn" id="submitBtn">
+                    🤝 CONFIRMER MA CONTRIBUTION (1,000 FDJ)
+                </button>
+            </form>
+        </div>
+
+        <div class="participants-list">
+            <h3>👥 Participants inscrits (<span id="participantCount">0</span>)</h3>
+            <div id="participantsList">
+                <p style="text-align: center; opacity: 0.7; padding: 20px;">
+                    Soyez le premier à vous inscrire!
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de confirmation -->
+    <div id="confirmationModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2>✅ Inscription en cours de validation!</h2>
+            <p id="confirmationMessage"></p>
+            <div style="background: rgba(255, 107, 53, 0.3); padding: 15px; border-radius: 8px; margin: 15px 0;">
+                <p><strong>📞 Numéro WhatsApp : 77 44 54 01</strong></p>
+                <p style="font-size: 0.9rem;">Votre inscription sera confirmée après vérification de votre contribution</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Variables globales
+        let participants = [];
+        let selectedPaymentMethod = '';
+
+        // Gestion du compte à rebours
+        function updateCountdown() {
+            const tournamentDate = new Date('2025-07-12T00:00:00');
+            const now = new Date();
+            const timeLeft = tournamentDate - now;
+
+            if (timeLeft > 0) {
+                const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+
+                document.getElementById('countdown').innerHTML = 
+                    `⏰ Temps restant: ${days} jours, ${hours}h ${minutes}min`;
+            } else {
+                document.getElementById('countdown').innerHTML = 
+                    "🔥 TOURNOI EN COURS! 🔥";
+            }
+        }
+
+        // Mise à jour du compte à rebours chaque minute
+        setInterval(updateCountdown, 60000);
+        updateCountdown();
+
+        // Gestion de la sélection de méthode de paiement
+        document.querySelectorAll('.payment-method').forEach(method => {
+            method.addEventListener('click', function() {
+                document.querySelectorAll('.payment-method').forEach(m => m.classList.remove('selected'));
+                this.classList.add('selected');
+                selectedPaymentMethod = this.dataset.method;
+            });
+        });
+
+        // Gestion du formulaire d'inscription
+        document.getElementById('registrationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            if (!selectedPaymentMethod) {
+                alert('⚠️ Veuillez sélectionner une méthode de paiement!');
+                return;
+            }
+
+            const transferScreenshot = document.getElementById('transferScreenshot').files[0];
+            const confirmTransfer = document.getElementById('confirmTransfer').checked;
+            
+            if (!transferScreenshot) {
+                alert('⚠️ Veuillez joindre la capture d\'écran de votre transfert!');
+                return;
+            }
+            
+            if (!confirmTransfer) {
+                alert('⚠️ Veuillez confirmer que vous avez effectué votre contribution vers 77 44 54 01!');
+                return;
+            }
+
+            const formData = {
+                playerName: document.getElementById('playerName').value,
+                country: document.getElementById('country').value,
+                phone: document.getElementById('phone').value,
+                playerID: document.getElementById('playerID').value,
+                paymentMethod: selectedPaymentMethod,
+                transferScreenshot: transferScreenshot.name,
+                registrationTime: new Date().toLocaleString('fr-FR'),
+                paymentConfirmed: true
+            };
+
+            // Simulation de vérification du paiement
+            const submitBtn = document.getElementById('submitBtn');
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '⏳ Vérification de la contribution...';
+            
+            setTimeout(() => {
+                // Ajouter le participant à la liste
+                participants.push(formData);
+                updateParticipantsList();
+
+                // Afficher la modal de confirmation
+                showConfirmationModal(formData);
+
+                // Réinitialiser le formulaire
+                this.reset();
+                selectedPaymentMethod = '';
+                document.querySelectorAll('.payment-method').forEach(m => m.classList.remove('selected'));
+                
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = '🤝 CONFIRMER MA CONTRIBUTION (1,000 FDJ)';
+            }, 2000);
+        });
+
+        // Mettre à jour la liste des participants
+        function updateParticipantsList() {
+            const participantsList = document.getElementById('participantsList');
+            const participantCount = document.getElementById('participantCount');
+            
+            participantCount.textContent = participants.length;
+            
+            if (participants.length === 0) {
+                participantsList.innerHTML = `
+                    <p style="text-align: center; opacity: 0.7; padding: 20px;">
+                        Soyez le premier à vous inscrire!
+                    </p>
+                `;
+            } else {
+                participantsList.innerHTML = participants.map((participant, index) => `
+                    <div class="participant-item">
+                        <div>
+                            <strong>${participant.playerName}</strong>
+                            <br>
+                            <small>ID: ${participant.playerID} | ${getCountryName(participant.country)}</small>
+                        </div>
+                        <div style="text-align: right;">
+                            <small>${participant.registrationTime}</small>
+                        </div>
+                    </div>
+                `).join('');
+            }
+        }
+
+        // Obtenir le nom du pays
+        function getCountryName(code) {
+            const countries = {
+                'dj': '🇩🇯 Djibouti',
+                'so': '🇸🇴 Somalie',
+                'et': '🇪🇹 Éthiopie',
+                'er': '🇪🇷 Érythrée',
+                'sa': '🇸🇦 Arabie Saoudite',
+                'ye': '🇾🇪 Yémen',
+                'fr': '🇫🇷 France',
+                'other': '🌍 Autre'
+            };
+            return countries[code] || code;
+        }
+
+        // Afficher la modal de confirmation
+        function showConfirmationModal(formData) {
+            const modal = document.getElementById('confirmationModal');
+            const message = document.getElementById('confirmationMessage');
+            
+            message.innerHTML = `
+                <p><strong>Joueur:</strong> ${formData.playerName}</p>
+                <p><strong>Méthode de paiement:</strong> ${formData.paymentMethod.toUpperCase()}</p>
+                <p><strong>Contribution versée:</strong> 1,000 FDJ</p>
+                <p><strong>WhatsApp:</strong> ${formData.phone}</p>
+                <br>
+                <div style="background: rgba(255, 215, 0, 0.2); padding: 15px; border-radius: 8px; margin: 15px 0;">
+                    <h4 style="color: #ffd700;">📱 PROCHAINE ÉTAPE</h4>
+                    <p>Envoyez maintenant votre capture d'écran sur WhatsApp avec le message :</p>
+                    <p style="font-style: italic; color: #ffd700;">"Contribution Tournoi PUBG - ${formData.playerName}"</p>
+                </div>
+            `;
+            
+            modal.style.display = 'block';
+        }
+
+        // Fermer la modal
+        function closeModal() {
+            document.getElementById('confirmationModal').style.display = 'none';
+        }
+
+        // Fermer la modal en cliquant en dehors
+        window.onclick = function(event) {
+            const modal = document.getElementById('confirmationModal');
+            if (event.target === modal) {
+                modal.style.display = 'none';
+            }
+        }
+
+        // Animation au chargement
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.info-card, .registration-form, .participants-list');
+            cards.forEach((card, index) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                setTimeout(() => {
+                    card.style.transition = 'all 0.6s ease';
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, index * 200);
+            });
+        });
+    </script>
+</body>
+</html>
